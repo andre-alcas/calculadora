@@ -1,7 +1,7 @@
 <template>
-  <display class="display">
+  <div class="display">
     {{ value }}
-  </display>
+  </div>
 </template>
 
 <script>
