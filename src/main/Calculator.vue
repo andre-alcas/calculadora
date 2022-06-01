@@ -2,23 +2,25 @@
   <div>
     {{ resultado }}
   </div>
+  //TODO: Finalizando 01/06/2022
   <div class="calculator">
-    <Display />
-
+    <Display value=""/> 
     <Button label="AC" triple />
     <Button label="/" @click="calcular('dividir')" />
-    <Button label="9" value="9" />
+    <Button label="7" value="7" />
     <Button label="8" />
-    <Button label="7" />
+    <Button label="9" />
     <Button label="*" @click="calcular('mult')" />
-    <Button label="6" />
-    <Button label="5" />
     <Button label="4" />
+    <Button label="5" />
+    <Button label="6" />
     <Button label="-" @click="calcular('sub')" />
-    <Button label="3" />
-    <Button label="2" />
     <Button label="1" />
+    <Button label="2" />
+    <Button label="3" />
     <Button label="+" @click="calcular('somar')" />
+    <Button label="0" />
+    <Button label="=" triple/>
   </div>
 </template>
 
