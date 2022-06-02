@@ -1,5 +1,6 @@
 <template>
   <div class="calculator">
+    <Textarea :value="displayValue" />
     <Display :value="displayValue" />
     <Button label="AC" triple @onClick="clearMemory" />
     <Button label="/" @onClick="setOperation" />

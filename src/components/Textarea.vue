@@ -1,17 +1,18 @@
 <template>
-    <div class="display">
-    {{ value }}
-  </div>
+    <div>
+        <Textarea v-model="value" disabled rows="5" cols="30" />
+    </div>
 </template>
 
 <script>
+
 export default {
-  props: ['value'],
-};
+    props: ['value'],
+}
 </script>
 
 <style>
-.display {
+.textarea {
   grid-column: span 4;
   background-color: #D3D3D3;
 

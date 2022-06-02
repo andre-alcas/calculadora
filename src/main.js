@@ -6,6 +6,7 @@ import PrimeVue from 'primevue/config';
 import Dialog from 'primevue/dialog';
 import Button from 'primevue/button';
 import Card from 'primevue/card';
+import Textarea from 'primevue/textarea';
 
 import 'primevue/resources/themes/saga-blue/theme.css'       //theme
 import 'primevue/resources/primevue.min.css'                 //core css
@@ -18,5 +19,6 @@ app.use(PrimeVue);
 app.component('Dialog', Dialog);
 app.component('Button', Button);
 app.component('Card', Card);
+app.component('Textarea', Textarea);
 
 app.mount('#app')
