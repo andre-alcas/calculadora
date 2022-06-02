@@ -1,7 +1,4 @@
 <template>
-  <!--  <div>
-    {{ resultado }}
-  </div> -->
   <div class="calculator">
     <Display :value="displayValue" />
     <Button label="AC" triple @onClick="clearMemory" />
@@ -34,7 +31,7 @@ export default {
     return {
       displayValue: "0",
       clearDisplay: false,
-      operaton: null,
+      operation: null,
       values: [0, 0],
       current: 0,
     };
@@ -46,11 +43,28 @@ export default {
     },
     setOperation(operation) {
       //console.log('Operacao'+operation)
-      //quando é o primeiro número informado operação é setado o display resetado
-      //e o valor de current(segundo ) 
-      if(this.current === 0){
-          this.operation = operation
-
+      //quando é o primeiro número informado operação é setada e o display é resetado
+      //e o valor de current(segundo valor do vetor) é esperado
+      if (this.current === 0) {
+        this.operation = operation;
+        this.current = 1;
+        this.clearDisplay = true;
+      } else {
+        const equals = operation === "=";
+        const currentOperation = this.operation;
+        try {
+          this.values[0] = eval(
+            `${this.values[0]} ${currentOperation} ${this.values[1]}`
+          );
+        } catch (e) {
+          this.$emit("OnError", e);
+        }
+        this.values[1] = 0;
+        //setar o número de casas decimais(precisao) da calculadora
+        this.displayValue = parseFloat(this.values[0]).toFixed(5);
+        this.operation = equals ? null : operation;
+        this.current = equals ? 0 : 1;
+        this.clearDisplay = !equals;
       }
     },
     addDigit(n) {
@@ -63,21 +77,24 @@ export default {
       const clearDisplay = this.displayValue === "0" || this.clearDisplay;
       //quando limpa o display o valor atual currentValue pode resetar(clearDisplay) ou pode ser
       //o valor que tá no display(this.displayValue)
-      const currentValue = clearDisplay ? "" : this.displayValue
+      const currentValue = clearDisplay ? "" : this.displayValue;
       //atualiza o valor exibido no display concatenado com o digito n
-      const newdisplayValue = currentValue + n
+      const newdisplayValue = currentValue + n;
 
       //atualiza o valor exibido no display(this.displayValue de data()) com o valor da constante newValue
-      this.displayValue = newdisplayValue
-      this.clearDisplay= false
+      this.displayValue = parseFloat(newdisplayValue).toFixed(2);
+      this.clearDisplay = false;
 
-      if(n !== "."){
+      //Alternativa 1
+      this.values[this.current] = this.displayValue;
+
+      //Alternativa 2
+      /*       if(n !== "."){
         const i = this.current
         const newValue = parseFloat(this.displayValue)
         this.values[i] = newValue
 
-      }
-
+      } */
     },
     /*     calcular(nomeOperacao) {
       console.log(nomeOperacao);
