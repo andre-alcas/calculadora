@@ -1,26 +1,26 @@
 <template>
-  <div>
+  <!--  <div>
     {{ resultado }}
-  </div>
-  //TODO: Finalizando 01/06/2022
+  </div> -->
   <div class="calculator">
-    <Display value=""/> 
-    <Button label="AC" triple />
-    <Button label="/" @click="calcular('dividir')" />
-    <Button label="7" value="7" />
-    <Button label="8" />
-    <Button label="9" />
-    <Button label="*" @click="calcular('mult')" />
-    <Button label="4" />
-    <Button label="5" />
-    <Button label="6" />
-    <Button label="-" @click="calcular('sub')" />
-    <Button label="1" />
-    <Button label="2" />
-    <Button label="3" />
-    <Button label="+" @click="calcular('somar')" />
-    <Button label="0" />
-    <Button label="=" triple/>
+    <Display :value="displayValue" />
+    <Button label="AC" triple @onClick="clearMemory" />
+    <Button label="/" @onClick="setOperation" />
+    <Button label="7" @onClick="addDigit" />
+    <Button label="8" @onClick="addDigit" />
+    <Button label="9" @onClick="addDigit" />
+    <Button label="*" @onClick="setOperation" />
+    <Button label="4" @onClick="addDigit" />
+    <Button label="5" @onClick="addDigit" />
+    <Button label="6" @onClick="addDigit" />
+    <Button label="-" @onClick="setOperation" />
+    <Button label="1" @onClick="addDigit" />
+    <Button label="2" @onClick="addDigit" />
+    <Button label="3" @onClick="addDigit" />
+    <Button label="+" @onClick="setOperation" />
+    <Button label="0" double @onClick="addDigit" />
+    <Button label="." @onClick="addDigit" />
+    <Button label="=" @onClick="setOperation" />
   </div>
 </template>
 
@@ -30,15 +30,56 @@ import Button from "../components/Button";
 
 export default {
   components: { Button, Display },
-  data() {
+  data: function () {
     return {
-      resultado: 0,
-      value1: 0,
-      value2: 0,
+      displayValue: "0",
+      clearDisplay: false,
+      operaton: null,
+      values: [0, 0],
+      current: 0,
     };
   },
   methods: {
-    calcular(nomeOperacao) {
+    clearMemory() {
+      //console.log('LimparMemoria')
+      Object.assign(this.$data, this.$options.data());
+    },
+    setOperation(operation) {
+      //console.log('Operacao'+operation)
+      //quando é o primeiro número informado operação é setado o display resetado
+      //e o valor de current(segundo ) 
+      if(this.current === 0){
+          this.operation = operation
+
+      }
+    },
+    addDigit(n) {
+      //console.log('Digito'+n)
+      if (n === "." && this.displayValue.includes(".")) {
+        return;
+      }
+      //limpa o display quando o display já está com 0(já é o padrão dentro de data())
+      //ou quando o display = true
+      const clearDisplay = this.displayValue === "0" || this.clearDisplay;
+      //quando limpa o display o valor atual currentValue pode resetar(clearDisplay) ou pode ser
+      //o valor que tá no display(this.displayValue)
+      const currentValue = clearDisplay ? "" : this.displayValue
+      //atualiza o valor exibido no display concatenado com o digito n
+      const newdisplayValue = currentValue + n
+
+      //atualiza o valor exibido no display(this.displayValue de data()) com o valor da constante newValue
+      this.displayValue = newdisplayValue
+      this.clearDisplay= false
+
+      if(n !== "."){
+        const i = this.current
+        const newValue = parseFloat(this.displayValue)
+        this.values[i] = newValue
+
+      }
+
+    },
+    /*     calcular(nomeOperacao) {
       console.log(nomeOperacao);
       switch (nomeOperacao) {
         case (nomeOperacao = "somar"):
@@ -64,16 +105,17 @@ export default {
         default:
           break;
       }
-    },
+    }, */
   },
 };
 </script>
 
 <style>
 .calculator {
-  height: 320px;
-  width: 235px;
+  height: 340px;
+  width: 230px;
   border-radius: 5px;
+  background-color: #0d89ec;
   overflow: hidden;
 
   display: grid;

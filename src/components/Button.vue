@@ -1,5 +1,7 @@
 <template>
-  <Button class="button" :class="{ double, triple, operation }">
+  <Button class="button" 
+    @click="$emit('onClick',label)"
+    :class="{ double, triple, operation }">
     {{ label }}
   </Button>
 </template>
@@ -16,18 +18,17 @@ export default {
 </script>
 
 <style>
-:root{
-    --bg-button: #f0f0f0;
+:root {
+  --bg-button: #f0f0f0;
 }
 
-.button.double{
-    grid-column: span 2;
+.button.double {
+  grid-column: span 2;
 }
-.button.triple{
-    grid-column: span 3;
+.button.triple {
+  grid-column: span 3;
 }
-.button.operation{
-    background-color: #f0f0f0;
+.button.operation {
+  background-color: #f0f0f0;
 }
-
 </style>
