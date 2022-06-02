@@ -1,6 +1,7 @@
 <template>
   <div class="calculator">
-    <Textarea :modelValue="displayValue"/>
+    <!-- <Textarea :modelValue="displayValue" disabled /> -->
+    <Display :value="atualizarHistorico()" />
     <Display :value="displayValue" />
     <Button label="AC" triple @onClick="clearMemory" />
     <Button label="/" @onClick="setOperation" />
@@ -31,6 +32,7 @@ export default {
   data: function () {
     return {
       displayValue: "0",
+      displayValueHistorico: "0",
       clearDisplay: false,
       operation: null,
       values: [0, 0],
@@ -97,6 +99,9 @@ export default {
 
       } */
     },
+    atualizarHistorico(){
+      this.displayValueHistorico = this.displayValue 
+    }
     /*     calcular(nomeOperacao) {
       console.log(nomeOperacao);
       switch (nomeOperacao) {
