@@ -1,25 +1,25 @@
 <template>
   <div class="calculator">
     <!-- <Textarea :modelValue="displayValue" disabled /> -->
-    <Display :value="atualizarHistorico()" />
+
     <Display :value="displayValue" />
     <Button label="AC" triple @onClick="clearMemory" />
-    <Button label="/" @onClick="setOperation" />
+    <Button label="/" @onClick="setOperation" operation />
     <Button label="7" @onClick="addDigit" />
     <Button label="8" @onClick="addDigit" />
     <Button label="9" @onClick="addDigit" />
-    <Button label="*" @onClick="setOperation" />
+    <Button label="*" @onClick="setOperation" operation />
     <Button label="4" @onClick="addDigit" />
     <Button label="5" @onClick="addDigit" />
     <Button label="6" @onClick="addDigit" />
-    <Button label="-" @onClick="setOperation" />
+    <Button label="-" @onClick="setOperation" operation />
     <Button label="1" @onClick="addDigit" />
     <Button label="2" @onClick="addDigit" />
     <Button label="3" @onClick="addDigit" />
-    <Button label="+" @onClick="setOperation" />
+    <Button label="+" @onClick="setOperation" operation />
     <Button label="0" double @onClick="addDigit" />
     <Button label="." @onClick="addDigit" />
-    <Button label="=" @onClick="setOperation" />
+    <Button label="=" @onClick="setOperation" operation />
   </div>
 </template>
 
@@ -64,14 +64,19 @@ export default {
         }
         this.values[1] = 0;
         //setar o número de casas decimais(precisao) da calculadora
-        this.displayValue = parseFloat(this.values[0]).toFixed(5);
+        this.displayValue = parseFloat(this.values[0]).toFixed(2);
+        //this.displayValue = this.values[0];
         this.operation = equals ? null : operation;
         this.current = equals ? 0 : 1;
         this.clearDisplay = !equals;
+        //console.log("resultado" + this.values[0], this.values[1]);
+        if (this.addDigit) {
+          //console.log("onclick.name");
+          this.clearDisplay = true;
+        }
       }
     },
     addDigit(n) {
-      //console.log('Digito'+n)
       if (n === "." && this.displayValue.includes(".")) {
         return;
       }
@@ -85,12 +90,12 @@ export default {
       const newdisplayValue = currentValue + n;
 
       //atualiza o valor exibido no display(this.displayValue de data()) com o valor da constante newValue
-      this.displayValue = parseFloat(newdisplayValue).toFixed(2);
+      this.displayValue = newdisplayValue;
       this.clearDisplay = false;
 
       //Alternativa 1
       this.values[this.current] = this.displayValue;
-
+      console.log(this.values[0], this.values[1]);
       //Alternativa 2
       /*       if(n !== "."){
         const i = this.current
@@ -99,9 +104,9 @@ export default {
 
       } */
     },
-    atualizarHistorico(){
-      this.displayValueHistorico = this.displayValue 
-    }
+    atualizarHistorico() {
+      this.displayValueHistorico = this.displayValue;
+    },
     /*     calcular(nomeOperacao) {
       console.log(nomeOperacao);
       switch (nomeOperacao) {

@@ -29,6 +29,6 @@ export default {
   grid-column: span 3;
 }
 .button.operation {
-  background-color: #f0f0f0;
+  background: linear-gradient(to bottom, #87e0fd 0%,#53cbf1 40%,#05abe0 100%);
 }
 </style>
