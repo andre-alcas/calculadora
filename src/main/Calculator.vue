@@ -1,7 +1,7 @@
 <template>
   <div class="calculator">
     <!-- <Textarea :modelValue="displayValue" disabled /> -->
-
+    <Display class="display2" :value="historicoCalculos" />
     <Display :value="displayValue" />
     <Button label="AC" triple @onClick="clearMemory" />
     <Button label="/" @onClick="setOperation" operation />
@@ -17,6 +17,7 @@
     <Button label="2" @onClick="addDigit" />
     <Button label="3" @onClick="addDigit" />
     <Button label="+" @onClick="setOperation" operation />
+    <!-- <Button label="+/-" @onClick="setOperation" /> -->
     <Button label="0" double @onClick="addDigit" />
     <Button label="." @onClick="addDigit" />
     <Button label="=" @onClick="setOperation" operation />
@@ -32,7 +33,7 @@ export default {
   data: function () {
     return {
       displayValue: "0",
-      displayValueHistorico: "0",
+      historicoCalculos: "0",
       clearDisplay: false,
       operation: null,
       values: [0, 0],
@@ -55,6 +56,7 @@ export default {
       } else {
         const equals = operation === "=";
         const currentOperation = this.operation;
+        this.historicoCalculos = this.values[0] + currentOperation + this.values[1];
         try {
           this.values[0] = eval(
             `${this.values[0]} ${currentOperation} ${this.values[1]}`
@@ -62,6 +64,8 @@ export default {
         } catch (e) {
           this.$emit("OnError", e);
         }
+        //this.historicoCalculos = this.historicoCalculos + "=" +this.values[0];
+        this.historicoCalculos = this.historicoCalculos + "=";
         this.values[1] = 0;
         //setar o número de casas decimais(precisao) da calculadora
         this.displayValue = parseFloat(this.values[0]).toFixed(2);
@@ -103,9 +107,6 @@ export default {
         this.values[i] = newValue
 
       } */
-    },
-    atualizarHistorico() {
-      this.displayValueHistorico = this.displayValue;
     },
     /*     calcular(nomeOperacao) {
       console.log(nomeOperacao);
