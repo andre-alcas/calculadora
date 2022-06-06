@@ -1,20 +1,20 @@
 <template>
-  <Panel :style="{ width: '330px', height: '560px' }">
+  <Panel toggleable:true :style="{ width: '330px', height: '560px' }">
     <Display class="display2" :value="historicoCalculos" />
     <Display :value="displayValue" />
     <div class="grid bg-blue-100">
-      <div class="col-9"  @click="clearMemory()" >
+      <div class="col-9" @click="clearMemory()" >
         AC
       </div>
       <div class="col" @click="setOperation('/')" > 
       /
       </div>
     </div>
-    <div class="grid bg-blue-100">
-      <div class="col"><Button label="7" @click="addDigit('7')" /></div>
-      <div class="col"><Button label="8" @click="addDigit('8')" /></div>
-      <div class="col"><Button label="9" @click="addDigit('9')" /></div>
-      <div class="col"><Button label="*" @click="setOperation('*')" /></div>
+    <div class="grid">
+      <div class="col"><Button label="7" class="col-12" @click="addDigit('7')" /></div>
+      <div class="col"><Button label="8" class="col-12" @click="addDigit('8')" /></div>
+      <div class="col"><Button label="9" class="col-12" @click="addDigit('9')" /></div>
+      <div class="col"><Button label="*" class="col-12" @click="setOperation('*')" /></div>
     </div>
     <div class="grid">
       <div class="col"><Button label="4" @click="addDigit('4')" /></div>
