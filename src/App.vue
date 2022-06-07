@@ -27,7 +27,7 @@ body{
 #app {
   display:flex;
   flex-direction: column;
-  height: 100vh;
+  height: flex;
   justify-content: center;
   align-items: center;
   text-align: center;

@@ -2,13 +2,22 @@
   <Panel toggleable:true :style="{ width: '330px', height: '560px' }">
     <Display class="display2" :value="historicoCalculos" />
     <Display :value="displayValue" />
+    <hr>
     <div class="grid">
-      <div class="col">
+      <div class="col ">
         <Button label="AC" class="col-12" @click="clearMemory()" />
       </div>
-      <div class="col-3">
+      <div class="col-3 ">
         <Button label="/" class="col-12" @click="setOperation('/')" />
       </div>
+      <!--
+      <div class="col -mr-8">
+        <Button label="AC" class="col-12" @click="clearMemory()" />
+      </div>
+      <div class="col-3 mr-1">
+        <Button label="/" class="col-12" @click="setOperation('/')" />
+      </div>
+      -->
     </div>
     <div class="grid">
       <div class="col">
