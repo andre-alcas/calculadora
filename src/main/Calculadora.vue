@@ -192,19 +192,5 @@ export default {
 </script>
 
 <style>
-.calculadora {
-  height: 340px;
-  width: 230px;
-  border-radius: 5px;
-  background-color: #0d89ec;
-  overflow: hidden;
 
-  display: grid;
-  grid-template-columns: repeat(4, 25%);
-  grid-template-rows: 1fr 48px 48px 48px 48px 48px;
-}
-
-.button.operation {
-  background: linear-gradient(to bottom, #87e0fd 0%, #53cbf1 40%, #05abe0 100%);
-}
 </style>
