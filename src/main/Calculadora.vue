@@ -2,36 +2,66 @@
   <Panel toggleable:true :style="{ width: '330px', height: '560px' }">
     <Display class="display2" :value="historicoCalculos" />
     <Display :value="displayValue" />
-    <div class="grid bg-blue-100">
-      <div class="col-9" @click="clearMemory()" >
-        AC
+    <div class="grid">
+      <div class="col">
+        <Button label="AC" class="col-12" @click="clearMemory()" />
       </div>
-      <div class="col" @click="setOperation('/')" > 
-      /
+      <div class="col-3">
+        <Button label="/" class="col-12" @click="setOperation('/')" />
       </div>
     </div>
     <div class="grid">
-      <div class="col"><Button label="7" class="col-12" @click="addDigit('7')" /></div>
-      <div class="col"><Button label="8" class="col-12" @click="addDigit('8')" /></div>
-      <div class="col"><Button label="9" class="col-12" @click="addDigit('9')" /></div>
-      <div class="col"><Button label="*" class="col-12" @click="setOperation('*')" /></div>
+      <div class="col">
+        <Button label="7" class="col-12" @click="addDigit('7')" />
+      </div>
+      <div class="col">
+        <Button label="8" class="col-12" @click="addDigit('8')" />
+      </div>
+      <div class="col">
+        <Button label="9" class="col-12" @click="addDigit('9')" />
+      </div>
+      <div class="col">
+        <Button label="*" class="col-12" @click="setOperation('*')" />
+      </div>
     </div>
     <div class="grid">
-      <div class="col"><Button label="4" @click="addDigit('4')" /></div>
-      <div class="col"><Button label="5" @click="addDigit('5')" /></div>
-      <div class="col"><Button label="6" @click="addDigit('6')" /></div>
-      <div class="col"><Button label="-" @click="setOperation('-')" /></div>
+      <div class="col">
+        <Button label="4" class="col-12" @click="addDigit('4')" />
+      </div>
+      <div class="col">
+        <Button label="5" class="col-12" @click="addDigit('5')" />
+      </div>
+      <div class="col">
+        <Button label="6" class="col-12" @click="addDigit('6')" />
+      </div>
+      <div class="col">
+        <Button label="-" class="col-12" @click="setOperation('-')" />
+      </div>
     </div>
     <div class="grid">
-      <div class="col"><Button label="1" @click="addDigit('1')" /></div>
-      <div class="col"><Button label="2" @click="addDigit('2')" /></div>
-      <div class="col"><Button label="3" @click="addDigit('3')" /></div>
-      <div class="col"><Button label="+" @click="setOperation('+')" /></div>
+      <div class="col">
+        <Button label="1" class="col-12" @click="addDigit('1')" />
+      </div>
+      <div class="col">
+        <Button label="2" class="col-12" @click="addDigit('2')" />
+      </div>
+      <div class="col">
+        <Button label="3" class="col-12" @click="addDigit('3')" />
+      </div>
+      <div class="col">
+        <Button label="+" class="col-12" @click="setOperation('+')" />
+      </div>
     </div>
     <div class="grid">
-      <div class="col"><Button label="0" @click="addDigit('0')" /></div>
-      <div class="col"><Button label="." @click="addDigit('.')" /></div>
-      <div class="col"><Button label="=" @click="setOperation('=')" /></div>
+      <div class="col">
+        <Button label="0" class="col-12" @click="addDigit('0')" />
+      </div>
+      <div class="col-3">
+        <Button label="." class="col-12" @click="addDigit('.')" />
+      </div>
+      <div class="col-3">
+        <Button label="=" class="col-12" @click="setOperation('=')" />
+      </div>
     </div>
   </Panel>
 </template>
@@ -165,10 +195,7 @@ export default {
   grid-template-rows: 1fr 48px 48px 48px 48px 48px;
 }
 
-.p-button2 {
-  grid-column: span 2;
-}
-.p-button3 {
-  grid-column: span 3;
+.button.operation {
+  background: linear-gradient(to bottom, #87e0fd 0%, #53cbf1 40%, #05abe0 100%);
 }
 </style>
